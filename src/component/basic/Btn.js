@@ -21,9 +21,9 @@ export default Btn;
 const styles = StyleSheet.create({
   Button: {
     paddingVertical: 10,
-    width: '100%',
-    paddingHorizontal: 60,
+    paddingHorizontal: '10%',
     borderColor: '#fff',
+    justifyContent: 'flex-start',
     marginVertical: 10,
   },
 

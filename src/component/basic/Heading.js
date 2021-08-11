@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: '700',
     color: theme.colors.background,
-    paddingVertical: 20,
+    paddingVertical: 8,
   },
 });
