@@ -2,20 +2,53 @@ import React from 'react';
 import {useState} from 'react';
 import {
   Dimensions,
+  FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import Video from 'react-native-video';
+
 import Heading from './../../component/basic/Heading';
 import Paragraph from './../../component/basic/Paragraph';
 import LParagraph from './../../component/basic/LParagaph';
+
+import BottomSheet from 'reanimated-bottom-sheet';
+import Animated from 'react-native-reanimated';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Avatar} from 'react-native-paper';
+import ListOfComment from '../../component/ListOfComment';
+
+const listOfComments = [
+  {
+    name: 'Monsta',
+    claws: '112',
+    date: '330',
+    message: 'Oh , Hi',
+    img: '',
+  },
+  {
+    name: 'Summer',
+    claws: '320',
+    date: 'June 10, 2021',
+    message: 'Hello',
+    img: '',
+  },
+  {
+    name: 'Nageena',
+    claws: '40',
+    date: 'Jan 10, 2021',
+
+    message: 'There?',
+    img: '',
+  },
+];
 
 const Post = props => {
   const {post} = props;
@@ -24,6 +57,34 @@ const Post = props => {
   const onPause = () => {
     setPause(!pause);
   };
+
+  const sheetRef = React.createRef(null);
+  const fall = new Animated.Value(1);
+
+  const renderContent = () => (
+    <View
+      style={{
+        backgroundColor: '#000',
+        padding: 16,
+        height: 700,
+      }}>
+      <View style={styles.renderTop}>
+        <Heading></Heading>
+
+        <Paragraph>124 Comment </Paragraph>
+        <TouchableOpacity onPress={() => sheetRef.current.snapTo(1)}>
+          <Heading>X</Heading>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ListOfComments}>
+        <FlatList
+          data={listOfComments}
+          renderItem={({item}) => <ListOfComment comments={item} />}
+        />
+      </View>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={onPause}>
@@ -71,11 +132,13 @@ const Post = props => {
 
                 <Text style={styles.CommentText}>Comment</Text>
               </View>
-              <View style={styles.ThreeIcons}>
+              <TouchableOpacity
+                onPress={() => sheetRef.current.snapTo(0)}
+                style={styles.ThreeIcons}>
                 <LParagraph> {post.shares} Shares </LParagraph>
                 <Fontisto name="share-a" size={40} color="#fff" />
                 <Text style={styles.CommentText}>Share</Text>
-              </View>
+              </TouchableOpacity>
               <View style={styles.ThreeIcons}>
                 <LParagraph> {post.claws} Claws</LParagraph>
                 <Icon name="comments" size={40} color="#fff" />
@@ -85,6 +148,15 @@ const Post = props => {
           </View>
         </View>
       </TouchableWithoutFeedback>
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={[330, 0]}
+        initialSnap={1}
+        callbackNode={fall}
+        enabledGestureInteraction={true}
+        borderRadius={10}
+        renderContent={renderContent}
+      />
     </View>
   );
 };
@@ -131,5 +203,10 @@ const styles = StyleSheet.create({
   },
   ThreeIcons: {
     alignItems: 'center',
+  },
+  renderTop: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

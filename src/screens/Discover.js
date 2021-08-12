@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, SafeAreaView} from 'react-native';
+import ListOfComment from '../component/ListOfComment';
 
 const Discover = () => {
   return (
-    <View>
-      <Text>Discover</Text>
-    </View>
+    <SafeAreaView>
+      <ListOfComment />
+    </SafeAreaView>
   );
 };
 

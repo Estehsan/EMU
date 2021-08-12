@@ -26,7 +26,7 @@ const data1 = [
     songImage:
       'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg',
     claws: 123,
-    comments: 12,
+    comments: 23,
     shares: 44,
   },
   {

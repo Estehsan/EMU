@@ -13,6 +13,8 @@ target 'EMU' do
   )
 
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'EMUTests' do
     inherit! :complete
     # Pods for testing
