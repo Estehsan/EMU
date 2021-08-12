@@ -2,6 +2,8 @@ import React from 'react';
 import {useState} from 'react';
 import {
   Dimensions,
+  SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -11,10 +13,12 @@ import Video from 'react-native-video';
 import Heading from './../../component/basic/Heading';
 import Paragraph from './../../component/basic/Paragraph';
 import LParagraph from './../../component/basic/LParagaph';
-import Icons from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Avatar} from 'react-native-paper';
 
-const Post = () => {
+const Post = props => {
+  const {post} = props;
   const [pause, setPause] = useState(false);
 
   const onPause = () => {
@@ -23,51 +27,64 @@ const Post = () => {
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={onPause}>
-        <Video
-          style={styles.Video}
-          resizeMode="cover"
-          repeat={true}
-          paused={pause}
-          source={{
-            uri: 'https://d8vywknz0hvjw.cloudfront.net/fitenium-media-prod/videos/45fee890-a74f-11ea-8725-311975ea9616/proccessed_720.mp4',
-          }}
-        />
-      </TouchableWithoutFeedback>
+        <View>
+          <Video
+            style={styles.Video}
+            resizeMode="cover"
+            repeat={true}
+            paused={pause}
+            source={{
+              uri: post.videoUri,
+            }}
+          />
 
-      <View style={styles.Footer}>
-        <View style={styles.Details}>
-          <View style={styles.lDetails}>
-            <View style={styles.hot}>
-              <Text style={{color: 'white', fontWeight: '500', fontSize: 15}}>
-                Hot
-              </Text>
+          <View style={styles.Footer}>
+            <View style={styles.Details}>
+              <View style={styles.lDetails}>
+                <View style={styles.hot}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontWeight: '500',
+                      fontSize: 15,
+                    }}>
+                    Hot
+                  </Text>
+                </View>
+                {/* <Heading>@{post.user.username}</Heading> */}
+                <LParagraph>#shooting #building #sniper</LParagraph>
+                <LParagraph>{post.description}</LParagraph>
+              </View>
+              <View style={styles.rDetails}>
+                <Avatar.Image
+                  size={50}
+                  source={{
+                    uri: post.user.imageUri,
+                  }}
+                />
+              </View>
             </View>
-            <Heading>@nageenamahi</Heading>
-            <LParagraph>#shooting #building #sniper</LParagraph>
-            <LParagraph>Jump (Remix)</LParagraph>
-          </View>
-          <View style={styles.rDetails}>
-            <Avatar.Image
-              size={50}
-              source={{
-                uri: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Arh-avatar.jpg',
-              }}
-            />
-          </View>
-        </View>
-        <View style={styles.ButtonContainer}>
-          <View style={styles.Comment}>
-            <Text stle={stles.CommentText}>Claw</Text>
-            <Icon name="comments" size={22} />
-          </View>
-          <View style={styles.Share}>
-            <Text stle={stles.CommentText}>Claw</Text>
-          </View>
-          <View style={styles.Claw}>
-            <Text stle={stles.CommentText}>Claw</Text>
+            <View style={styles.ButtonContainer}>
+              <View style={styles.ThreeIcons}>
+                <LParagraph> {post.comments} Comments</LParagraph>
+                <Fontisto name="share-a" size={40} color="#fff" />
+
+                <Text style={styles.CommentText}>Comment</Text>
+              </View>
+              <View style={styles.ThreeIcons}>
+                <LParagraph> {post.shares} Shares </LParagraph>
+                <Fontisto name="share-a" size={40} color="#fff" />
+                <Text style={styles.CommentText}>Share</Text>
+              </View>
+              <View style={styles.ThreeIcons}>
+                <LParagraph> {post.claws} Claws</LParagraph>
+                <Icon name="comments" size={40} color="#fff" />
+                <Text style={styles.CommentText}>Claw</Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -77,9 +94,15 @@ const styles = StyleSheet.create({
   container: {
     height: Dimensions.get('window').height,
     width: '100%',
+    flex: 1,
   },
   Video: {position: 'absolute', top: 0, bottom: 0, right: 0, left: 0},
-  Footer: {height: '100%', justifyContent: 'flex-end', padding: 10},
+  Footer: {
+    height: Dimensions.get('window').height,
+    paddingBottom: 80,
+    justifyContent: 'flex-end',
+    padding: 10,
+  },
   Details: {
     display: 'flex',
     flexDirection: 'row',
@@ -87,6 +110,8 @@ const styles = StyleSheet.create({
   },
   ButtonContainer: {
     display: 'flex',
+    alignContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
@@ -98,5 +123,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     paddingVertical: 4,
+  },
+  CommentText: {
+    color: '#fff',
+    fontFamily: 'SFUIText-Bold',
+    fontSize: 13,
+  },
+  ThreeIcons: {
+    alignItems: 'center',
   },
 });

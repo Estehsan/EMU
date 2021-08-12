@@ -1,16 +1,4 @@
-import React from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Flatlist,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-
-import Post from './Post/Post';
-
-const data1 = [
+export default [
   {
     id: '1',
     videoUri:
@@ -48,20 +36,3 @@ const data1 = [
     shares: 44,
   },
 ];
-
-const Home = () => {
-  return (
-    <FlatList
-      data={data1}
-      renderItem={({item}) => <Post post={item} />}
-      showsVerticalScrollIndicator={false}
-      snapToAlignment={'start'}
-      snapToInterval={Dimensions.get('window').height}
-      decelerationRate={'fast'}
-    />
-  );
-};
-
-export default Home;
-
-const styles = StyleSheet.create({});
