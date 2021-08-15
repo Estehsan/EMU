@@ -4,13 +4,14 @@ import {Button as PaperBtn} from 'react-native-paper';
 import {blue100} from 'react-native-paper/lib/typescript/styles/colors';
 import {theme} from '../../theme';
 
-const Btn = ({mode, ...props}) => {
+const Btn = ({mode, icon, ...props}) => {
   return (
     <PaperBtn
-      icon="camera"
+      icon={icon}
       style={styles.Button}
       labelStyle={styles.text}
-      mode={mode}
+      mode="contained"
+      light
       {...props}
     />
   );

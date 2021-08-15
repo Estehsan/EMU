@@ -1,21 +1,25 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {TextInput as Input} from 'react-native-paper';
+import {TextInput as Input, TextInput} from 'react-native-paper';
 import {theme} from '../../theme';
+import Paragraph from './Paragraph';
 
-const TInput = ({errorText, description, ...props}) => {
+const TInput = ({errorText, description, iconName, ...props}) => {
   return (
     <View style={styles.container}>
       <Input
-        styles={styles.input}
-        selectionColor={theme.colors.accent}
-        underlineColor="transparent"
-        outlineColor={theme.colors.backdrop}
+        style={styles.input}
+        color="red"
+        // underlineColor="transparent"
+        left={<TextInput.Icon name={iconName} color={'#fff'} />}
+        outlineColor={theme.colors.silver}
+        underlineColor={theme.colors.silver}
         mode="outlined"
+        selectionColor={theme.colors.silver}
         {...props}
       />
-      {description && !errorText ? <Text>{description}</Text> : null}
-      {errorText ? <Text>{errorText}</Text> : null}
+      {description && !errorText ? <Paragraph>{description}</Paragraph> : null}
+      {errorText ? <Paragraph>{errorText}</Paragraph> : null}
     </View>
   );
 };
@@ -27,7 +31,10 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 10,
   },
-  input : {
+  input: {
     borderRadius: 100,
+    fontSize: 50,
+    color: '#fff',
+    backgroundColor: theme.colors.primary,
   },
 });

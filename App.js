@@ -17,6 +17,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import GetStarted from './src/auth/GetStarted';
 import Login from './src/auth/Login';
+import LoginSocial from './src/auth/LoginSocial';
+
 import Home from './src/screens/Home';
 import Profile from './src/screens/Profile';
 import Messages from './src/screens/Messages';
@@ -38,6 +40,7 @@ const App = () => {
 
           <Stack.Screen name="GetStarted" component={GetStarted} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="LoginSocial" component={LoginSocial} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
