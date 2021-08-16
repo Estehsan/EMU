@@ -1,6 +1,6 @@
 // import 'react-native-gesture-handler';
 
-import React from 'react';
+import React, {Profiler} from 'react';
 import {StatusBar, StyleSheet, Text, View, Image} from 'react-native';
 import {Button, Provider} from 'react-native-paper';
 import {theme} from './src/theme';
@@ -24,6 +24,22 @@ import Profile from './src/screens/Profile';
 import Messages from './src/screens/Messages';
 import Discover from './src/screens/Discover';
 import Upload from './src/screens/Upload';
+import Info from './src/screens/TabBar/Info';
+import Feed from './src/screens/TabBar/Feed';
+
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+
+// Top Tab
+const Bar = createMaterialTopTabNavigator();
+
+function TopTabs() {
+  return (
+    <Bar.Navigator>
+      <Bar.Screen name="Info" component={Info} />
+      <Bar.Screen name="Feed" component={Feed} />
+    </Bar.Navigator>
+  );
+}
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
