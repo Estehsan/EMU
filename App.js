@@ -19,6 +19,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import GetStarted from './src/auth/GetStarted';
 import Login from './src/auth/Login';
 import LoginSocial from './src/auth/LoginSocial';
+import QuickView from './src/screens/QuickView';
 
 import Home from './src/screens/Home';
 import Profile from './src/screens/Profile';
@@ -59,6 +60,7 @@ const App = () => {
           <Stack.Screen name="Discover" component={MyTabs} />
           <Stack.Screen name="Profile" component={MyTabs} />
           <Stack.Screen name="Upload" component={MyTabs} />
+          <Stack.Screen name="QuickView" component={QuickView} />
 
           <Stack.Screen name="GetStarted" component={GetStarted} />
           <Stack.Screen name="Login" component={Login} />

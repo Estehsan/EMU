@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 import Video from 'react-native-video';
+import {useNavigation} from '@react-navigation/native';
 
 import {BottomSheet} from 'react-native-btr';
 
@@ -52,8 +53,9 @@ const listOfComments = [
   },
 ];
 
-const Post = props => {
-  const {post} = props;
+const Post = ({post, QuickView}) => {
+  const navigation = useNavigation();
+
   const [pause, setPause] = useState(false);
 
   const [visible, setVisible] = useState(false);
@@ -135,14 +137,16 @@ const Post = props => {
                   {post.description}
                 </LParagraph>
               </View>
-              <View style={styles.rDetails}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('QuickView')}
+                style={styles.rDetails}>
                 <Avatar.Image
                   size={50}
                   source={{
                     uri: post.user.imageUri,
                   }}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={styles.ButtonContainer}>
               <TouchableOpacity

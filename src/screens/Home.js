@@ -67,7 +67,8 @@ const data1 = [
   },
 ];
 
-const Home = () => {
+const Home = ({navigation}) => {
+  
   return (
     <View style={styles.container}>
       <FlatList
