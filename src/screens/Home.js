@@ -24,7 +24,7 @@ const data1 = [
     description: 'hahahah oh boy @borat',
     songName: 'NF - The search',
     songImage:
-      'https://influencermarketinghub.com/wiki/wp-content/uploads/2020/08/1657369265111046_c5_720x720.jpeg',
+      'https://d8vywknz0hvjw.cloudfront.net/fitenium-media-prod/videos/45fee890-a74f-11ea-8725-311975ea9616/proccessed_720.mp4',
     claws: 123,
     comments: 23,
     shares: 44,
@@ -67,19 +67,29 @@ const data1 = [
   },
 ];
 
-const Home = () => {
+const Home = ({navigation}) => {
+  
   return (
-    <FlatList
-      data={data1}
-      renderItem={({item}) => <Post post={item} />}
-      showsVerticalScrollIndicator={false}
-      snapToAlignment={'start'}
-      snapToInterval={Dimensions.get('window').height}
-      decelerationRate={'fast'}
-    />
+    <View style={styles.container}>
+      <FlatList
+        data={data1}
+        renderItem={({item}) => <Post post={item} />}
+        showsVerticalScrollIndicator={false}
+        snapToInterval={Dimensions.get('window').height}
+        decelerationRate={'fast'}
+        snapToAlignment={'start'}
+        disableIntervalMomentum
+        initialNumToRender={10}
+        maxToRenderPerBatch={5}
+        updateCellsBatchingPeriod={50}
+        removeClippedSubviews={false}
+      />
+    </View>
   );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {backgroundColor: '#000'},
+});
