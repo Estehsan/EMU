@@ -69,7 +69,11 @@ const renderNavBar = () => (
 );
 
 const renderContent = () => {
-  return <TopTabs />;
+  return (
+    <View style={styles.body}>
+      <Feed />
+    </View>
+  );
 };
 // Content of Profile Top is here
 const title = () => {

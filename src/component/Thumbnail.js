@@ -1,19 +1,19 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
-const Thumbnail = () => {
+const Thumbnail = ({link}) => {
   return (
     <View style={styles.container}>
       <Image
         style={{
-          width: '100%',
           height: '100%',
-          aspectRatio: 1,
         }}
         source={{
-          uri: 'https://wearesocial-net.s3.amazonaws.com/wp-content/uploads/2020/11/gamer_room.jpg',
+          uri:
+            link ||
+            'https://play-lh.googleusercontent.com/Knw_hAyujH2PKqKtOEM5r8oJ_U-enugflHPpAMUr2T1R6Fp3AUPMYlLKm476BYwNt3Wl',
         }}
-        resizeMode="contain"
+        resizeMode="cover"
       />
     </View>
   );
@@ -24,7 +24,8 @@ export default Thumbnail;
 const styles = StyleSheet.create({
   container: {
     width: '30%',
-    height: 400,
+    margin: 5,
+    maxHeight: 110,
     backgroundColor: 'blue',
   },
 });
