@@ -5,6 +5,8 @@ export const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#1B1B1B',
+    accent: '#fff',
+    
     silver: '#9F9F9F',
     tblack: '#19181b',
     tred: '#f84563',

@@ -8,8 +8,17 @@ const TInput = ({errorText, description, iconName, ...props}) => {
   return (
     <View style={styles.container}>
       <Input
-        style={styles.input}
+        style={[styles.input]}
+        theme={{
+          colors: {
+            primary: '#fff',
+            underlineColor: 'transparent',
+            text: '#fff',
+          },
+        }}
         color="red"
+        onChangeText={{color: 'white'}}
+        placeholderTextColor="white"
         // underlineColor="transparent"
         left={<TextInput.Icon name={iconName} color={'#fff'} />}
         outlineColor={theme.colors.silver}
@@ -33,8 +42,6 @@ const styles = StyleSheet.create({
   },
   input: {
     borderRadius: 100,
-    fontSize: 50,
-    color: '#fff',
     backgroundColor: theme.colors.primary,
   },
 });

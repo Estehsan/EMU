@@ -17,6 +17,8 @@ import Google from 'react-native-vector-icons/AntDesign';
 import RedBtn from '../component/basic/RedBtn';
 
 const Login = ({navigation}) => {
+  const [name, setName] = useState({value: '', error: ''});
+
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
 
@@ -30,20 +32,26 @@ const Login = ({navigation}) => {
   return (
     <Background>
       <View style={styles.container}>
-        <Heading>Welcome</Heading>
+        <View style={styles.Top}>
+          <Heading>Log in With Email</Heading>
+          <Paragraph></Paragraph>
+          <Paragraph>
+            Log in to post your gaming videos,gain more claws, follow your
+            accounts etc.
+          </Paragraph>
+          <Paragraph></Paragraph>
+        </View>
         <TInput
           placeholder="Your Name"
-          value={email.value}
           iconName="account"
           error={email.error}
           errorText={email.error}
           onChangeText={e => {
-            setEmail({value: e, error: ''});
+            setName({value: e, error: ''});
           }}
-          value={email.value}
+          value={email.name}
         />
         <TInput
-          value={email.value}
           placeholder="Your Email"
           iconName="email-outline"
           error={email.error}
@@ -51,11 +59,11 @@ const Login = ({navigation}) => {
           onChangeText={e => {
             setEmail({value: e, error: ''});
           }}
-          value={email.value}
+          value={email.email}
         />
         <TInput
           placeholder="Enter Your Password"
-          value={password.value}
+          value={password.password}
           iconName="lock-open-outline"
           error={password.error}
           errorText={email.error}
@@ -92,6 +100,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 4,
     width: '100%',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  Top: {
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',

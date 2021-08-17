@@ -47,7 +47,9 @@ const App = () => {
   return (
     <Provider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+          initialRouteName="Login">
           <Stack.Screen name="Home" component={MyTabs} />
           <Stack.Screen name="Messages" component={MyTabs} />
           <Stack.Screen name="Discover" component={MyTabs} />
@@ -67,7 +69,6 @@ function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName="Profile"
       tabBarOptions={{
         activeTintColor: '#fff',
         tabStyle: {backgroundColor: '#000'},

@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {
   Dimensions,
   FlatList,
+  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -59,7 +60,7 @@ const Post = props => {
   };
 
   const sheetRef = React.createRef(null);
-  const fall = new Animated.Value(1);
+  const fall = new Animated.Value(2);
 
   const renderContent = () => (
     <View
@@ -86,78 +87,101 @@ const Post = props => {
   );
 
   return (
-    <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={onPause}>
-        <View>
-          <Video
-            style={styles.Video}
-            resizeMode="cover"
-            repeat={true}
-            paused={pause}
-            source={{
-              uri: post.videoUri,
-            }}
-          />
+    <>
+      <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={onPause}>
+          <View>
+            <Video
+              style={styles.Video}
+              resizeMode="cover"
+              repeat={true}
+              paused={pause}
+              source={{
+                uri: post.videoUri,
+              }}
+            />
 
-          <View style={styles.Footer}>
-            <View style={styles.Details}>
-              <View style={styles.lDetails}>
-                <View style={styles.hot}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontWeight: '500',
-                      fontSize: 15,
-                    }}>
-                    Hot
-                  </Text>
+            <View style={styles.Footer}>
+              <View style={styles.Details}>
+                <View style={styles.lDetails}>
+                  <View style={styles.hot}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontWeight: '500',
+                        fontSize: 15,
+                      }}>
+                      Hot
+                    </Text>
+                  </View>
+                  <Heading>@{post.user.username}</Heading>
+                  <LParagraph style={{color: '#fff'}}>
+                    #shooting #building #sniper
+                  </LParagraph>
+                  <LParagraph style={{color: '#fff'}}>
+                    <Image
+                      source={require('./../../assets/images/claw.png')}
+                      style={{height: 10, width: 10}}
+                    />
+                    {post.description}
+                  </LParagraph>
                 </View>
-                {/* <Heading>@{post.user.username}</Heading> */}
-                <LParagraph>#shooting #building #sniper</LParagraph>
-                <LParagraph>{post.description}</LParagraph>
+                <View style={styles.rDetails}>
+                  <Avatar.Image
+                    size={50}
+                    source={{
+                      uri: post.user.imageUri,
+                    }}
+                  />
+                </View>
               </View>
-              <View style={styles.rDetails}>
-                <Avatar.Image
-                  size={50}
-                  source={{
-                    uri: post.user.imageUri,
-                  }}
-                />
-              </View>
-            </View>
-            <View style={styles.ButtonContainer}>
-              <View style={styles.ThreeIcons}>
-                <LParagraph> {post.comments} Comments</LParagraph>
-                <Fontisto name="share-a" size={40} color="#fff" />
+              <View style={styles.ButtonContainer}>
+                <View style={styles.ThreeIcons}>
+                  <LParagraph> {post.comments} Comments</LParagraph>
+                  <Image
+                    source={require('./../../assets/images/comment.png')}
+                    style={{height: 50, marginVertical: 8, width: 50}}
+                    resizeMode="contain"
+                  />
 
-                <Text style={styles.CommentText}>Comment</Text>
-              </View>
-              <TouchableOpacity
-                onPress={() => sheetRef.current.snapTo(0)}
-                style={styles.ThreeIcons}>
-                <LParagraph> {post.shares} Shares </LParagraph>
-                <Fontisto name="share-a" size={40} color="#fff" />
-                <Text style={styles.CommentText}>Share</Text>
-              </TouchableOpacity>
-              <View style={styles.ThreeIcons}>
-                <LParagraph> {post.claws} Claws</LParagraph>
-                <Icon name="comments" size={40} color="#fff" />
-                <Text style={styles.CommentText}>Claw</Text>
+                  <Text style={styles.CommentText}>Comment</Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => sheetRef.current.snapTo(0)}
+                  style={styles.ThreeIcons}>
+                  <LParagraph> {post.shares} Shares </LParagraph>
+                  <Image
+                    source={require('./../../assets/images/share.png')}
+                    style={{height: 50, marginVertical: 8, width: 50}}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.CommentText}>Share</Text>
+                </TouchableOpacity>
+                <View style={styles.ThreeIcons}>
+                  <LParagraph> {post.claws} Claws</LParagraph>
+                  <Image
+                    source={require('./../../assets/images/claw.png')}
+                    style={{height: 45, marginVertical: 8, width: 45}}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.CommentText}>Claw</Text>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={[330, 0]}
-        initialSnap={1}
-        callbackNode={fall}
-        enabledGestureInteraction={true}
-        borderRadius={10}
-        renderContent={renderContent}
-      />
-    </View>
+        </TouchableWithoutFeedback>
+        <BottomSheet
+          ref={sheetRef}
+          snapPoints={[330, 0]}
+          initialSnap={1}
+          enabledBottomClamp={true}
+          callbackNode={fall}
+          enabledGestureInteraction={true}
+          borderRadius={10}
+          renderContent={renderContent}
+        />
+      </View>
+    </>
   );
 };
 export default Post;
@@ -166,7 +190,6 @@ const styles = StyleSheet.create({
   container: {
     height: Dimensions.get('window').height,
     width: '100%',
-    flex: 1,
   },
   Video: {position: 'absolute', top: 0, bottom: 0, right: 0, left: 0},
   Footer: {
@@ -203,6 +226,7 @@ const styles = StyleSheet.create({
   },
   ThreeIcons: {
     alignItems: 'center',
+    marginVertical: 15,
   },
   renderTop: {
     display: 'flex',
