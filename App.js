@@ -1,9 +1,10 @@
 // import 'react-native-gesture-handler';
 
-import React, {Profiler} from 'react';
+import React, {Profiler, useEffect} from 'react';
 import {StatusBar, StyleSheet, Text, View, Image} from 'react-native';
 import {Button, Provider} from 'react-native-paper';
 import {theme} from './src/theme';
+import SplashScreen from 'react-native-splash-screen';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconA from 'react-native-vector-icons/SimpleLineIcons';
@@ -44,12 +45,15 @@ function TopTabs() {
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{headerShown: false}}
-          initialRouteName="Login">
+          initialRouteName="GetStarted">
           <Stack.Screen name="Home" component={MyTabs} />
           <Stack.Screen name="Messages" component={MyTabs} />
           <Stack.Screen name="Discover" component={MyTabs} />

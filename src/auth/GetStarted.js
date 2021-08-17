@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   FooterA: {flex: 1},
   FooterB: {
     justifyContent: 'center',
-    backgroundColor: '#020202',
+    backgroundColor: theme.colors.combination,
     alignItems: 'center',
     flex: 1,
     width: Dimensions.get('window').width,
